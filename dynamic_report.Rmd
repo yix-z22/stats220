@@ -40,14 +40,10 @@ img {
 ```
 
 ## My Dynamic Report - An analysis of 21 days of my sleep data
-<p>
-This report analyses my sleep quality/duration over 21 days in March, 2025. <br>
-The following factors were recorded:<br>
-<ul>
-<li>Sleep quality rating (on a scale of 1 - 10)</li>
-<li>Pre-bedtime app usage + content category</li>
-</ul>
-</p>
+This report analyses my sleep quality/duration over 21 days in March, 2025.
+The following factors were recorded:
+- Sleep quality rating (on a scale of 1 - 10)
+- Pre-bedtime app usage + content category
 
 ```{r}
 csv_file <- "https://docs.google.com/spreadsheets/d/e/2PACX-1vQtgCBkmh_SoecUmPg2gGAYAntfvS-G5efNBRFkoMVQVDfzv6_q0HgEqvtT0dTV5IHtyVV9Xr4bi1Ja/pub?gid=227145503&single=true&output=csv"
@@ -79,19 +75,16 @@ bad_sleep_nights <- sum(latest_data$sleep_quality <= 4)
 ```
 
 ## Average Sleep Quality
-<p> Over the 21 days where I recorded the quality of my sleep, my average sleep quality came to **`r avg_sleep_quality `** out of 10. This was actually a bit surprising to me, as I consider myself someone who has *very* poor sleeping habits. <br>
-In hindsight, my self-rating could have actually been heavily impacted on the amount of caffeine I consumed after I woke up. So maybe next time, I need to ensure that I rate my sleep right after I wake up, or see if the quality can be 'objectified' by 'how many cans of coffee I drank the next day' instead.</p>
+Over the 21 days where I recorded the quality of my sleep, my average sleep quality came to **`r avg_sleep_quality `** out of 10. This was actually a bit surprising to me, as I consider myself someone who has *very* poor sleeping habits.
+In hindsight, my self-rating could have actually been heavily impacted on the amount of caffeine I consumed after I woke up. So maybe next time, I need to ensure that I rate my sleep right after I wake up, or see if the quality can be 'objectified' by 'how many cans of coffee I drank the next day' instead.
 
 ## Most used app before sleeping
-<p> The next thing I looked at was the apps that I used right before sleeping. I'm someone who struggles to go to sleep, so I've slowly developed the habit of *needing* to listen to or watch something to help me fall asleep. <br>
+The next thing I looked at was the apps that I used right before sleeping. I'm someone who struggles to go to sleep, so I've slowly developed the habit of *needing* to listen to or watch something to help me fall asleep.
 Over the 6 or so apps that I commonly use, the most common app was **`r most_used_app`**. 
-<br>
 Maybe it's time for me to consider deleting **`r most_used_app`**.....
-<br>
-</p>
 
 ## Sleep Quality Plot
-<p>Now that I've seen the average value of my sleep quality (**`r avg_sleep_quality`**), I wanted to see a visual breakdown of all my ratings. While the average gives me a good understanding, the distribution of data can show me more about the consistency of my sleep quality.<br>
+Now that I've seen the average value of my sleep quality (**`r avg_sleep_quality`**), I wanted to see a visual breakdown of all my ratings. While the average gives me a good understanding, the distribution of data can show me more about the consistency of my sleep quality.
 
 ```{r fig.width = 8, fig.height = 4}
 # 6. plot 3 - sleep quality over the 21 days (plot/bar chart)
@@ -104,15 +97,13 @@ ggplot(data = latest_data) +
     y = "Frequency (Over 21 days)") +
   scale_x_continuous(breaks=seq(1,10,by=1), limits=c(0.5,10.5))
 ```
-<p>
+
 From the plot, I can see that I had **`r good_sleep_nights`** nights of excellent sleep quality, where I rated it higher or equal to an 8. There were also **`r bad_sleep_nights`** nights where I did not sleep very well. My lowest rated sleep was at **`r min(latest_data$sleep_quality)`** out of 10, and my highest rating was **`r max(latest_data$sleep_quality)`** out of 10.
-</p>
+
 
 ## Type of Content Consumed
-<p>
-Now that I have a thorough understanding of my sleep quality over the 21 days, I can start looking at its correlation to the type of content I consumed before sleeping.<br>
+Now that I have a thorough understanding of my sleep quality over the 21 days, I can start looking at its correlation to the type of content I consumed before sleeping.
 To visualise this, I plotted all the categories of content I looked at before sleeping. I decided to use content type instead of app because it would give me a clearer breakdown of how engaging or stimulating the content was. 
-</p>
 ```{r fig.width = 8, fig.height = 4}
 # 4. plot 1 - types of content consumed before bed (plot/bar chart)
 ggplot(data = latest_data) +
